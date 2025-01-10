@@ -4,30 +4,34 @@ let pages; // array with all pages
 let menubutton; // single menu button
 
 function setup() {
-  pages = selectAll('.page');
-  menuitems = selectAll('.menuitem');
-  menubutton = select('.menubutton'); // select the single menubutton element
+  new DataFetch(
+    "https://opentdb.com/api.php?amount=20&category=9&difficulty=medium&type=multiple"
+  );
+
+  pages = selectAll(".page");
+  menuitems = selectAll(".menuitem");
+  menubutton = select(".menubutton"); // select the single menubutton element
 
   // Attach mousePressed event to each menuitem
   for (let m of menuitems) {
-    m.mousePressed(function(e) {
+    m.mousePressed(function (e) {
       let nr = e.target.id.slice(-1);
       shiftpage(nr);
     });
   }
-  
-  select('header #menu4').mouseOver(function(){
-    select('header').style('border-bottom', '6px solid black')
-  })
-  select('header #menu4').mouseOut(function(){
-    select('header').style('border-bottom', '0px solid black')
-  })
+
+  select("header #menu4").mouseOver(function () {
+    select("header").style("border-bottom", "6px solid black");
+  });
+  select("header #menu4").mouseOut(function () {
+    select("header").style("border-bottom", "0px solid black");
+  });
   // Attach mousePressed event to the single menubutton
-  menubutton.mousePressed(function() {
-    select('header').removeClass("hidden");
+  menubutton.mousePressed(function () {
+    select("header").removeClass("hidden");
   });
 
-  let header = select('header');
+  let header = select("header");
 
   header.mouseOver(() => {
     header.removeClass("hidden");
