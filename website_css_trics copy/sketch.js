@@ -2,12 +2,12 @@ let currentpage = 1;
 let menuitems; // array with all menu items
 let pages; // array with all pages
 let menubutton; // single menu button
+let fetchData;
 
 function setup() {
-  new DataFetch(
+  fetchData = new DataFetch(
     "https://opentdb.com/api.php?amount=20&category=9&difficulty=medium&type=multiple"
   );
-
   pages = selectAll(".page");
   menuitems = selectAll(".menuitem");
   menubutton = select(".menubutton"); // select the single menubutton element
@@ -62,4 +62,7 @@ function shiftpage(num) {
 
 function keyPressed() {
   shiftpage(key);
+}
+function draw() {
+  fetchData.checkAnswers();
 }
